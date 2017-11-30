@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <form method="POST" action="{{url_for('users.index')}}">
+    {{ form.csrf_token }}
+    <p>
+      {{ form.user_name(placeholder="Username") }}
+      <span>
+        {% if form.user_name.errors %}
+          {% for error in form.user_name.erros %}
+            {{ error }}
+          {% endfor %}
+        {% endif %}
+      </span>
+    </p>
+    <button type="submit">Add User</button>
+  </form>
+
+{% endblock %}

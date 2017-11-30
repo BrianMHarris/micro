@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST" action="{{url_for('users.show', id=user.id)}}?_method=PATCH">
+  {{ form.csrf_token }}
+  <p>
+    {{ form.user_name(placeholder="Username", value=user.user_name) }}
+    <span>
+      {% if form.user_name.errors %}
+        {% for error in form.first_name.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+  <button type="submit">Edit User</button>
+</form>
+
+{% endblock %}
