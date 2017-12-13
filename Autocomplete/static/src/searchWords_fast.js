@@ -58,7 +58,6 @@ function searchString(str, wordTries, num) {
   var strStack = []; // to be used as a string state
 
   function traverse(node, index) {
-    if (!node) return; // just in case
     if (results.length >= num) return;
 
     if (index < lowerCase.length - 1) {
