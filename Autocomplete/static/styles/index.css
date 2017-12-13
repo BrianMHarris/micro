@@ -1,0 +1,7 @@
+.list-result {
+  background-color: white;
+}
+
+.list-result:hover {
+  background-color: gray;
+}
