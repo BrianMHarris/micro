@@ -3,7 +3,15 @@ This little app demonstrates an auto-complete feature in a search bar. Currently
 
 There are two main algorithms used, separated into two files. "Slow" separates the dictionary, alphabetically, and stores it in a hash table of sorts. After hitting the first letter, it's a linear search through each word, matching the string typed. "Fast" also separates the dictionary alphabetically but stores the words in Tries. This allows for building words very quickly using a recursive tree traversal function.
 
-A quick analysis showed that the "fast" method was several times quicker when matches for the input string were not found early in a letter's list of words. A lot faster. Maybe one day I will add the numbers. Lots of readme's to write!
+A quick analysis showed that the "fast" method was tremendously quicker in nearly every test. For eaxample:
+
+String search 1000 times to get a good sample...
+
+```
+* "accu" - Slow: 1044.405ms ; Fast: 17.42ms
+* "su" - Slow: 1044.405ms ; Fast: 17.42ms
+* "tur" - Slow: 682.495ms ; Fast: 19.87ms
+```
 
 Autocomplete is part of a larger project, called "Micro", containing a collection of small (micro) apps.
 

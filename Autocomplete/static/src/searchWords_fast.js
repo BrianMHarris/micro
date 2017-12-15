@@ -58,37 +58,40 @@ function searchString(str, wordTries, num) {
   var strStack = []; // to be used as a string state
 
   function traverse(node, index) {
-    if (results.length >= num) return;
+    if (results.length >= num || !node) return;
 
     if (index < lowerCase.length - 1) {
       strStack.push(node.value);
-      traverse(node.children[lowerCase[index+1]], index + 1);
+      if (node.children[lowerCase[index+1]])
+        traverse(node.children[lowerCase[index+1]], index + 1);
     } else {
       if (node.value !== "null")
         strStack.push(node.value);
 
       let keys = Object.keys(node.children);
-      if (keys.length) {
-        // first check if there is a "null terminator" <null>
-        //  so we know this is a whole word
-        if (keys.includes("null")) {
-          results.push(strStack.join(""));
-        }
-
-        // traverse each child, in alphabetical order
-        for (var i = 0; i < 26; ++i) {
-          if (results.length >= num) break; // one last check, would hate to recurse this much
-          let char = String.fromCharCode(97 + i);
-          if (keys.includes(char))
-            traverse(node.children[char], index + 1);
-        }
+      // first check if there is a "null terminator" <null>
+      //  so we know this is a whole word
+      if (keys.includes("null")) {
+        results.push(strStack.join(""));
       }
+
+      // traverse each child, in alphabetical order
+      let char;
+      for (var i = 0; i < 26; ++i) {
+        if (results.length >= num) break; // one last check, would hate to recurse this much
+        char = String.fromCharCode(97 + i);
+        if (keys.includes(char))
+          traverse(node.children[char], index + 1);
+      }
+
       // always remove this letter from the stack since
       //  we're done with its children
-      strStack.pop();
+      if (node.value !== "null")
+        strStack.pop();
     }
   }
 
+  // refactor so it doesn't require a node here
   traverse(wordTries[lowerCase[0]], 0);
 
   return results;

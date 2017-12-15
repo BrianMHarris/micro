@@ -63,7 +63,7 @@ console.log(assertEqual("search M correct length",
 let wordSet = buildWordSet(dictionary);
 let t0 = performance.now();
 for (let i = 0; i < 10000; ++i) {
-  searchString("accu", wordSet, 100)
+  searchString("su", wordSet, 6)
 }
 let t1 = performance.now();
 console.log("::Time Test - Complete::")
