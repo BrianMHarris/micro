@@ -1,11 +1,16 @@
 #Overview
 This little app demonstrates an auto-complete feature in a search bar. Currently it only pulls from a dictionary but could be extended to utilize a database with any type of data (saved search queries, etc).
 
-There are two main algorithms used, separated into two files. "Slow" separates the dictionary, alphabetically, and stores it in a hash table of sorts. After hitting the first letter, it's a linear search through each word, matching the string typed. "Fast" also separates the dictionary alphabetically but stores the words in Tries. This allows for building words very quickly using a recursive tree traversal function.
+There are two main algorithms used, separated into two files.
+
+* "Slow" separates the dictionary, alphabetically, and stores it in a hash table of sorts. After hitting the first letter, it's a linear search through each word, matching the string typed.
+
+* "Fast" also separates the dictionary alphabetically but stores the words in Tries. This allows for building words very quickly using a recursive tree traversal function.
 
 A quick analysis showed that the "fast" method was tremendously quicker in nearly every test. For eaxample:
 
 String search 1000 times to get a good sample...
+* note redo this...Fast is now like...100x faster.
 
 ```
 * "accu" - Slow: 1044.405ms ; Fast: 17.42ms
@@ -33,4 +38,8 @@ You can run the following files for different results:
 #Technology
 * [jQuery](https://jquery.com/)
 * Aside from a little CSS and a bunch of JS, that's it.
+
+#Credit
+Initially I rolled my own search but decided it could likely be improved considerably. I researched this article and found it was optimized vs my own, though I made modifications to use less memory.
+[Predictive Text](https://medium.com/@dookpham/predictive-text-autocomplete-using-a-trie-prefix-tree-data-structure-in-javascript-part-1-6ff7fa83c74b)
 

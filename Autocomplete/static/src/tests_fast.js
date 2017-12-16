@@ -37,6 +37,17 @@ var testDict = [
   "marsupial",
 ]
 
+var tree = new WordTrie();
+tree.buildTrie(dictionary);
+
+let t2 = performance.now();
+var wordList = tree.getWordList("su", 10);
+let t3 = performance.now();
+
+console.log("::Time Test 2 - Complete::")
+console.log("::Total Time 2 - " + (t3-t2) + "::");
+
+/* // OLD WAY!
 var wordTries = buildWordSet(testDict);
 
 var searchA = searchString("a", wordTries, 4);
@@ -68,3 +79,5 @@ for (let i = 0; i < 10000; ++i) {
 let t1 = performance.now();
 console.log("::Time Test - Complete::")
 console.log("::Total Time - " + (t1-t0) + "::");
+*/
+
