@@ -15,8 +15,6 @@ class TrieNode {
 class WordTrie extends TrieNode {
   constructor() {
     super(null);
-
-    dictionary.forEach((el) => (this.addWord(el)));
   }
 
   buildTrie(dictionary) {
@@ -72,9 +70,8 @@ class WordTrie extends TrieNode {
           wordList.push(str + stringStack.slice(1).join(""));
           // remove teh final letter so we can move on or not.
           stringStack.pop();
-        } else {
-          wordsHelper(child);
         }
+        wordsHelper(child);
       }
 
       stringStack.pop();
